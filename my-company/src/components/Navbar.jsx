@@ -1,3 +1,6 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <nav style={{ backgroundColor: "#333", padding: "10px", textAlign: "center", display: "flex", justifyContent: "center" }}>
@@ -8,3 +11,4 @@ const Navbar = () => {
     </nav>
   );
 };
+
