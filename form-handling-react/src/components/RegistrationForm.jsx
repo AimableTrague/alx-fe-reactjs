@@ -1,96 +1,23 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import { formikSchema } from './formikForm';
+import React from 'react';
+import FormikForm from './formikForm';
 
 const RegistrationForm = () => {
-    // Controlled components setup
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const handleSubmit = async (values, actions) => {
+        // Your custom submit logic here (e.g., API call)
+        console.log('Form Submitted:', values);
 
-    // Formik setup
-    const formik = useFormik({
-        initialValues: { username, email, password },
-        validationSchema: formikSchema,
-        onSubmit: async (username, email, password, actions) => {
-            // Basic validation logic: Check if username, email, or password is empty
-            if (!username) {
-                actions.setErrors({ username: 'Username is required' });
-                return;
-            }
-            if (!email) {
-                actions.setErrors({ email: 'Email is required' });
-                return;
-            }
-            if (!password) {
-                actions.setErrors({ password: 'Password is required' });
-                return;
-            }
+        // Simulate async operation (like API call)
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
-            // If validation passes, simulate async operation (e.g., API call)
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            console.log('Form submitted successfully:', values);
-
-            // Reset form and state after submission
-            actions.resetForm();
-            setUsername('');
-            setEmail('');
-            setPassword('');
-        }
-    });
+        // Reset form and state after submission
+        actions.resetForm();
+    };
 
     return (
-        <form onSubmit={formik.handleSubmit} autoComplete="off">
-            <div>
-                <label htmlFor="username">Username: </label>
-                <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    placeholder="Enter your username"
-                    value={username}  // Controlled component
-                    onChange={(e) => {
-                        setUsername(e.target.value);  // Update state
-                        formik.handleChange(e);  // Update Formik's internal state
-                    }}
-                    onBlur={formik.handleBlur}
-                />
-                {formik.touched.username && formik.errors.username && <p>{formik.errors.username}</p>}
-            </div>
-            <div>
-                <label htmlFor="email">Email: </label>
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    value={email}  // Controlled component
-                    onChange={(e) => {
-                        setEmail(e.target.value);  // Update state
-                        formik.handleChange(e);  // Update Formik's internal state
-                    }}
-                    onBlur={formik.handleBlur}
-                />
-                {formik.touched.email && formik.errors.email && <p>{formik.errors.email}</p>}
-            </div>
-            <div>
-                <label htmlFor="password">Password: </label>
-                <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    value={password}  // Controlled component
-                    onChange={(e) => {
-                        setPassword(e.target.value);  // Update state
-                        formik.handleChange(e);  // Update Formik's internal state
-                    }}
-                    onBlur={formik.handleBlur}
-                />
-                {formik.touched.password && formik.errors.password && <p>{formik.errors.password}</p>}
-            </div>
-            <button type="submit" disabled={formik.isSubmitting}>Submit</button>
-        </form>
+        <div>
+            <h2>Register</h2>
+            <FormikForm onSubmit={handleSubmit} />
+        </div>
     );
 };
 
