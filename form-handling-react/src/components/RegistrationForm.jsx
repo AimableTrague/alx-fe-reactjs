@@ -1,40 +1,60 @@
 import React from 'react'
-import { Form, Field, Formik } from 'formik'
+import { useFormik } from 'formik'
 import { formikSchema } from './formikForm'
 
 const RegistrationForm = () => {
-    const onSubmit = async (values, actions) => {
-        await new Promise(resolve => setTimeout(resolve, 1000))
-        actions.resetForm()
-    }
-
+    const formik = useFormik({
+        initialValues: { username: '', email: '', password: '' },
+        validationSchema: formikSchema,
+        onSubmit: async (values, actions) => {
+            await new Promise(resolve => setTimeout(resolve, 1000))
+            actions.resetForm()
+        }
+    })
+    
     return (
-        <Formik
-            initialValues={{ username: '', email: '', password: '' }}
-            validationSchema={formikSchema}
-            onSubmit={onSubmit}
-        >
-            {({ isSubmitting, errors, touched }) => (
-                <Form autoComplete='off'>
-                    <div>
-                        <label htmlFor='username'>Username: </label>
-                        <Field type='text' name='username' id='username' placeholder='Enter your username' />
-                        {touched.username && errors.username && <p>{errors.username}</p>}
-                    </div>
-                    <div>
-                        <label htmlFor='email'>Email: </label>
-                        <Field type='email' name='email' id='email' placeholder='Enter your email' />
-                        {touched.email && errors.email && <p>{errors.email}</p>}
-                    </div>
-                    <div>
-                        <label htmlFor='password'>Password: </label>
-                        <Field type='password' name='password' id='password' placeholder='Enter your password' />
-                        {touched.password && errors.password && <p>{errors.password}</p>}
-                    </div>
-                    <button type='submit' disabled={isSubmitting}>Submit</button>
-                </Form>
-            )}
-        </Formik>
+        <form onSubmit={formik.handleSubmit} autoComplete='off'>
+            <div>
+                <label htmlFor='username'>Username: </label>
+                <input 
+                    type='text' 
+                    name='username' 
+                    id='username' 
+                    placeholder='Enter your username'
+                    value={formik.values.username}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+                {formik.touched.username && formik.errors.username && <p>{formik.errors.username}</p>}
+            </div>
+            <div>
+                <label htmlFor='email'>Email: </label>
+                <input 
+                    type='email' 
+                    name='email' 
+                    id='email' 
+                    placeholder='Enter your email'
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+                {formik.touched.email && formik.errors.email && <p>{formik.errors.email}</p>}
+            </div>
+            <div>
+                <label htmlFor='password'>Password: </label>
+                <input 
+                    type='password' 
+                    name='password' 
+                    id='password' 
+                    placeholder='Enter your password'
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
+                {formik.touched.password && formik.errors.password && <p>{formik.errors.password}</p>}
+            </div>
+            <button type='submit' disabled={formik.isSubmitting}>Submit</button>
+        </form>
     )
 }
 
