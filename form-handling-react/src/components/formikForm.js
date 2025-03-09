@@ -1,24 +1,55 @@
-import * as Yup from "yup";
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { formikSchema } from './formikSchema'; // Assuming your validation schema is imported here
 
-export const formikSchema = Yup.object().shape({
+const FormikForm = ({ onSubmit }) => {
+    return (
+        <Formik
+            initialValues={{ username: '', email: '', password: '' }}
+            validationSchema={formikSchema}
+            onSubmit={async (values, actions) => {
+                await onSubmit(values, actions);
+            }}
+        >
+            {formik => (
+                <Form>
+                    <div>
+                        <label htmlFor="username">Username: </label>
+                        <Field
+                            type="text"
+                            name="username"
+                            id="username"
+                            placeholder="Enter your username"
+                        />
+                        <ErrorMessage name="username" component="p" />
+                    </div>
+                    <div>
+                        <label htmlFor="email">Email: </label>
+                        <Field
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Enter your email"
+                        />
+                        <ErrorMessage name="email" component="p" />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password: </label>
+                        <Field
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Enter your password"
+                        />
+                        <ErrorMessage name="password" component="p" />
+                    </div>
+                    <button type="submit" disabled={formik.isSubmitting}>
+                        Submit
+                    </button>
+                </Form>
+            )}
+        </Formik>
+    );
+};
 
-    username: Yup
-        .string()
-        .min(3, "Username must be at least 3 charaxters long")
-        .required("Required"),
-
-    email: Yup
-        .string()
-        .email("Please enter a valid email")
-        .required("Required"),
-
-    password: Yup
-        .string()
-        .min(8, "Password must be at least 8 Characters long")
-        .matches(/[A-Z]/, "Password must have atleast one uppercase")
-        .matches(/[a-z]/, "Password must have atleast one lowercase")
-        .matches(/\d/, "Password must have atleast one number")
-        .matches(/[@$%!?&]/, "Password must have atleast one special Character")
-        .required("Required")
-
-})
+export default FormikForm;
