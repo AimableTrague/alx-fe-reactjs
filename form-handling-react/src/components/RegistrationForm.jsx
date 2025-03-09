@@ -27,11 +27,11 @@ const RegistrationForm = () => {
                 return;
             }
 
-            // Simulate async operation (e.g., API call)
+            // If validation passes, simulate async operation (e.g., API call)
             await new Promise(resolve => setTimeout(resolve, 1000));
-            console.log('Form submitted', values);
+            console.log('Form submitted successfully:', values);
 
-            // Reset form after submission
+            // Reset form and state after submission
             actions.resetForm();
             setUsername('');
             setEmail('');
