@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { formikSchema } from './formikForm';
 
 const RegistrationForm = () => {
+    // Controlled components setup
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    // Formik setup
     const formik = useFormik({
-        initialValues: { username: '', email: '', password: '' },
+        initialValues: { username, email, password },
         validationSchema: formikSchema,
         onSubmit: async (values, actions) => {
             // Basic validation logic: Check if username, email, or password is empty
@@ -27,6 +33,9 @@ const RegistrationForm = () => {
 
             // Reset form after submission
             actions.resetForm();
+            setUsername('');
+            setEmail('');
+            setPassword('');
         }
     });
 
@@ -39,8 +48,11 @@ const RegistrationForm = () => {
                     name="username"
                     id="username"
                     placeholder="Enter your username"
-                    value={formik.values.username}
-                    onChange={formik.handleChange}
+                    value={username}  // Controlled component
+                    onChange={(e) => {
+                        setUsername(e.target.value);  // Update state
+                        formik.handleChange(e);  // Update Formik's internal state
+                    }}
                     onBlur={formik.handleBlur}
                 />
                 {formik.touched.username && formik.errors.username && <p>{formik.errors.username}</p>}
@@ -52,8 +64,11 @@ const RegistrationForm = () => {
                     name="email"
                     id="email"
                     placeholder="Enter your email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
+                    value={email}  // Controlled component
+                    onChange={(e) => {
+                        setEmail(e.target.value);  // Update state
+                        formik.handleChange(e);  // Update Formik's internal state
+                    }}
                     onBlur={formik.handleBlur}
                 />
                 {formik.touched.email && formik.errors.email && <p>{formik.errors.email}</p>}
@@ -65,8 +80,11 @@ const RegistrationForm = () => {
                     name="password"
                     id="password"
                     placeholder="Enter your password"
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
+                    value={password}  // Controlled component
+                    onChange={(e) => {
+                        setPassword(e.target.value);  // Update state
+                        formik.handleChange(e);  // Update Formik's internal state
+                    }}
                     onBlur={formik.handleBlur}
                 />
                 {formik.touched.password && formik.errors.password && <p>{formik.errors.password}</p>}
