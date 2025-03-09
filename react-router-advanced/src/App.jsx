@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
-import Profile from './Profile/Profile';
-import ProfileDetails from './Profile/ProfileDetails';
-import ProfileSettings from './Profile/ProfileSettings';
-import Home from './Profile/Home';
+import Profile from './components/Profile';
+import ProfileDetails from './components/ProfileDetails';
+import ProfileSettings from './components/ProfileSettings';
+import Home from './components/Home';
 
 function App() {
   return (
