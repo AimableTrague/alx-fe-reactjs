@@ -11,6 +11,21 @@ const RegistrationForm = () => {
         initialValues: { username: '', email: '', password: '' },
         validationSchema: formikSchema,
         onSubmit: async (values, actions) => {
+            // Basic validation logic
+            if (!values.username) {
+                actions.setErrors({ username: 'Username is required' });
+                return;
+            }
+            if (!values.email) {
+                actions.setErrors({ email: 'Email is required' });
+                return;
+            }
+            if (!values.password) {
+                actions.setErrors({ password: 'Password is required' });
+                return;
+            }
+
+            // Simulate async operation
             await new Promise(resolve => setTimeout(resolve, 1000));
             actions.resetForm();
             setUsername('');
