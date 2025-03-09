@@ -6,22 +6,27 @@ const RegistrationForm = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState({});
 
     const formik = useFormik({
         initialValues: { username: '', email: '', password: '' },
         validationSchema: formikSchema,
         onSubmit: async (values, actions) => {
-            // Basic validation logic
+            // Basic validation logic: Check if username, email, or password is empty
+            let formErrors = {};
+
             if (!values.username) {
-                actions.setErrors({ username: 'Username is required' });
-                return;
+                formErrors.username = 'Username is required';
             }
             if (!values.email) {
-                actions.setErrors({ email: 'Email is required' });
-                return;
+                formErrors.email = 'Email is required';
             }
             if (!values.password) {
-                actions.setErrors({ password: 'Password is required' });
+                formErrors.password = 'Password is required';
+            }
+
+            if (Object.keys(formErrors).length > 0) {
+                setErrors(formErrors);
                 return;
             }
 
@@ -50,6 +55,7 @@ const RegistrationForm = () => {
                     }}
                     onBlur={formik.handleBlur}
                 />
+                {errors.username && <p>{errors.username}</p>}
                 {formik.touched.username && formik.errors.username && <p>{formik.errors.username}</p>}
             </div>
             <div>
@@ -66,6 +72,7 @@ const RegistrationForm = () => {
                     }}
                     onBlur={formik.handleBlur}
                 />
+                {errors.email && <p>{errors.email}</p>}
                 {formik.touched.email && formik.errors.email && <p>{formik.errors.email}</p>}
             </div>
             <div>
@@ -82,6 +89,7 @@ const RegistrationForm = () => {
                     }}
                     onBlur={formik.handleBlur}
                 />
+                {errors.password && <p>{errors.password}</p>}
                 {formik.touched.password && formik.errors.password && <p>{formik.errors.password}</p>}
             </div>
             <button type="submit" disabled={formik.isSubmitting}>Submit</button>
