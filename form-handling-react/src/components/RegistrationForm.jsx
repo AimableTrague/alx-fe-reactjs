@@ -12,17 +12,17 @@ const RegistrationForm = () => {
     const formik = useFormik({
         initialValues: { username, email, password },
         validationSchema: formikSchema,
-        onSubmit: async (values, actions) => {
+        onSubmit: async (username, email, password, actions) => {
             // Basic validation logic: Check if username, email, or password is empty
-            if (!values.username) {
+            if (!username) {
                 actions.setErrors({ username: 'Username is required' });
                 return;
             }
-            if (!values.email) {
+            if (!email) {
                 actions.setErrors({ email: 'Email is required' });
                 return;
             }
-            if (!values.password) {
+            if (!password) {
                 actions.setErrors({ password: 'Password is required' });
                 return;
             }
