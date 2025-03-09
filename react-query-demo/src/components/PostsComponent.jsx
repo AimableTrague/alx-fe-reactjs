@@ -1,13 +1,14 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-const fetchData = async () => {
+// Rename the function to `fetchPosts` as requested
+const fetchPosts = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts")
   return res.json()
 }
 
 const PostsComponent = () => {
-  const { data, error, isLoading, isError, refetch } = useQuery('fetchData', fetchData)
+  const { data, error, isLoading, isError, refetch } = useQuery('fetchData', fetchPosts)
 
   if (isLoading) return <div>Loading...</div>
 
