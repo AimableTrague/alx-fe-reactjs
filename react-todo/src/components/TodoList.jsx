@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AddTodoForm from "./AddTodoForm";
+import React from "react";
 
 const initialTodos = [
   { id: 1, text: "Learn React", completed: false },
@@ -37,12 +38,20 @@ function TodoList() {
             onClick={() => toggleTodo(todo.id)}
           >
             {todo.text}
-            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent click event on <li> from firing
+                deleteTodo(todo.id);
+              }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
     </div>
   );
 }
+
 
 export default TodoList;

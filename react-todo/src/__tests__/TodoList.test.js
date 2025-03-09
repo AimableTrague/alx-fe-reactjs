@@ -1,5 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import TodoList from "../TodoList";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import TodoList from "../components/TodoList";
+import React from "react";
+import "@testing-library/jest-dom";
 
 describe("TodoList Component", () => {
   test("renders the initial todos", () => {
@@ -28,12 +30,14 @@ describe("TodoList Component", () => {
     expect(todoItem).toHaveStyle("text-decoration: line-through");
   });
 
-  test("deletes a todo", () => {
+  test("deletes a todo", async () => {
     render(<TodoList />);
     const deleteButton = screen.getAllByText("Delete")[0];
 
     fireEvent.click(deleteButton);
 
-    expect(screen.queryByText("Learn React")).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryByText("Learn React")).toBeNull();
+    });
   });
 });
