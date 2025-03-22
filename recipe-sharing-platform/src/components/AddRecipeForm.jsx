@@ -27,7 +27,7 @@ const AddRecipeForm = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-  
+
   const handleSubmit = () => {
     if (validateForm()) {
       console.log('Recipe Added:', formData);
@@ -72,7 +72,7 @@ const AddRecipeForm = () => {
       <br />
 
       <button 
-        onClick={handleSubmit} 
+        onSubmit={handleSubmit}
         className="bg-slate-500 border p-2"
       >
         Add
