@@ -28,7 +28,8 @@ const AddRecipeForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     if (validateForm()) {
       console.log('Recipe Added:', formData);
     }
