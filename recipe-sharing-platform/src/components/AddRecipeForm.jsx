@@ -40,7 +40,7 @@ const AddRecipeForm = () => {
         <form onSubmit={handleSubmit}>
             <label htmlFor="title" className="pr-4">Title</label>
             <input
-                className="border-2 border-black"
+                className="border-2 border-black shadow rounded md:text-xl font-semibold"
                 type="text"
                 name="title"
                 id="title"
@@ -51,9 +51,8 @@ const AddRecipeForm = () => {
             <br />
 
             <label htmlFor="ingredients" className="pr-4">Ingredients (comma-separated)</label>
-            <input
-                className="border-2 border-black"
-                type="text"
+            <textarea
+                className="border-2 border-black shadow rounded md:text-xl font-semibold"
                 name="ingredients"
                 id="ingredients"
                 placeholder="Enter the ingredients"
@@ -64,7 +63,7 @@ const AddRecipeForm = () => {
 
             <label htmlFor="preparation" className="pr-4">Preparation Steps</label>
             <textarea
-                className="border-2 border-black"
+                className="border-2 border-black shadow rounded md:text-xl font-semibold"
                 name="preparation"
                 id="preparation"
                 placeholder="Enter preparation steps"
