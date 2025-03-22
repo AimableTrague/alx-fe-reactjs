@@ -36,47 +36,49 @@ const AddRecipeForm = () => {
 
   return (
     <div className="flex flex-col w-fit">
-      <label htmlFor="title" className="pr-4">Title</label>
-      <input
-        className="border-2 border-black"
-        type="text"
-        name="title"
-        id="title"
-        placeholder="Enter the title"
-        onChange={handleChange}
-      />
-      {errors.title && <p className="text-red-500">{errors.title}</p>}
-      <br />
+        <form onSubmit={handleSubmit}>
+            <label htmlFor="title" className="pr-4">Title</label>
+            <input
+                className="border-2 border-black"
+                type="text"
+                name="title"
+                id="title"
+                placeholder="Enter the title"
+                onChange={handleChange}
+            />
+            {errors.title && <p className="text-red-500">{errors.title}</p>}
+            <br />
 
-      <label htmlFor="ingredients" className="pr-4">Ingredients (comma-separated)</label>
-      <input
-        className="border-2 border-black"
-        type="text"
-        name="ingredients"
-        id="ingredients"
-        placeholder="Enter the ingredients"
-        onChange={handleChange}
-      />
-      {errors.ingredients && <p className="text-red-500">{errors.ingredients}</p>}
-      <br />
+            <label htmlFor="ingredients" className="pr-4">Ingredients (comma-separated)</label>
+            <input
+                className="border-2 border-black"
+                type="text"
+                name="ingredients"
+                id="ingredients"
+                placeholder="Enter the ingredients"
+                onChange={handleChange}
+            />
+            {errors.ingredients && <p className="text-red-500">{errors.ingredients}</p>}
+            <br />
 
-      <label htmlFor="preparation" className="pr-4">Preparation Steps</label>
-      <textarea
-        className="border-2 border-black"
-        name="preparation"
-        id="preparation"
-        placeholder="Enter preparation steps"
-        onChange={handleChange}
-      />
-      {errors.preparation && <p className="text-red-500">{errors.preparation}</p>}
-      <br />
+            <label htmlFor="preparation" className="pr-4">Preparation Steps</label>
+            <textarea
+                className="border-2 border-black"
+                name="preparation"
+                id="preparation"
+                placeholder="Enter preparation steps"
+                onChange={handleChange}
+            />
+            {errors.preparation && <p className="text-red-500">{errors.preparation}</p>}
+            <br />
 
-      <button 
-        onSubmit={handleSubmit}
-        className="bg-slate-500 border p-2"
-      >
-        Add
-      </button>
+            <button
+                className="bg-slate-500 border p-2"
+            >
+                Add
+            </button>
+        </form>
+      
     </div>
   );
 };
