@@ -16,6 +16,14 @@ const RecipeDetail = () => {
         <img src={recipe.image} alt={recipe.title} className="w-full h-60 object-cover rounded-md" />
         <h3 className="text-2xl font-semibold mt-4">{recipe.title}</h3>
         <p className="text-gray-600 text-md mt-2">{recipe.summary}</p>
+        <div>
+            <h4>Ingredients</h4>
+            <div>{recipe.ingredients}</div>
+        </div>
+        <div>
+            <h4>Instructions to follow:</h4>
+            <div>{recipe.instructions}</div>
+        </div>
       </div>
     </div>
   );
