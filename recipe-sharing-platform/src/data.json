@@ -1,0 +1,63 @@
+[
+    {
+      "id": 101,
+      "title": "Spaghetti Carbonara",
+      "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+      "image": "https://www.placeholder.com/101"
+    },
+    {
+      "id": 102,
+      "title": "Chicken Tikka Masala",
+      "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+      "image": "https://via.placeholder.com/102"
+    },
+    {
+      "id": 103,
+      "title": "Caesar Salad",
+      "summary": "A fresh salad with romaine lettuce, croutons, parmesan cheese, and a creamy Caesar dressing.",
+      "image": "https://via.placeholder.com/103"
+    },
+    {
+      "id": 104,
+      "title": "Margherita Pizza",
+      "summary": "A traditional Italian pizza topped with fresh basil, mozzarella cheese, and tomato sauce.",
+      "image": "https://via.placeholder.com/104"
+    },
+    {
+      "id": 105,
+      "title": "Beef Stroganoff",
+      "summary": "A creamy Russian dish featuring sautéed beef served with a sour cream sauce over noodles or rice.",
+      "image": "https://via.placeholder.com/105"
+    },
+    {
+      "id": 106,
+      "title": "Sushi Rolls",
+      "summary": "Delicious sushi rolls made with rice, nori, fresh fish, and vegetables.",
+      "image": "https://via.placeholder.com/106"
+    },
+    {
+      "id": 107,
+      "title": "French Onion Soup",
+      "summary": "A rich and flavorful soup made with caramelized onions and beef broth, topped with melted cheese.",
+      "image": "https://via.placeholder.com/107"
+    },
+    {
+      "id": 108,
+      "title": "Pad Thai",
+      "summary": "A popular Thai stir-fried noodle dish with eggs, tofu, shrimp, peanuts, and a tangy sauce.",
+      "image": "https://via.placeholder.com/108"
+    },
+    {
+      "id": 109,
+      "title": "Chocolate Lava Cake",
+      "summary": "A decadent chocolate dessert with a gooey molten center, best served warm with ice cream.",
+      "image": "https://via.placeholder.com/109"
+    },
+    {
+      "id": 110,
+      "title": "Avocado Toast",
+      "summary": "A simple yet delicious dish with mashed avocado on toasted bread, topped with seasonings and extras.",
+      "image": "https://via.placeholder.com/110"
+    }
+  ]
+  
