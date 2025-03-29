@@ -1,4 +1,4 @@
-import API from './components/services/API'
+import API from './services/API'
 import './index.css'
 
 
