@@ -1,4 +1,4 @@
-import API from './services/API'
+import { fetchUserData } from './services/API';
 import './index.css'
 
 
