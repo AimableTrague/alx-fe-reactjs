@@ -2,7 +2,6 @@ import { fetchUserData } from '../services/API';
 
 
 
-
 function App() {
 
   return (
