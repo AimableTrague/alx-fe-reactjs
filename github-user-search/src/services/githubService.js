@@ -17,6 +17,9 @@ const buildQuery = (params) => {
   // Add repos filter if available (e.g., repos:>10 means more than 10 repos)
   if (params.repos) queryString.push(`repos:>${params.repos}`);
 
+  // Add minRepos filter if available (e.g., minRepos=10)
+  if (params.minRepos) queryString.push(`repos:>${params.minRepos}`);
+
   return queryString.join('+');
 };
 
