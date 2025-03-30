@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://api.github.com/search/users',
+  baseURL: 'https://api.github.com/search/users?q',
 });
 
 // Helper function to build the query string for the search
@@ -32,7 +32,7 @@ export const fetchUserData = async (query) => {
     console.log(`Searching with query: ${searchQuery}`);
 
     // Make the GET request to the GitHub API with the constructed query string
-    const response = await API.get(`?q=${searchQuery}`);
+    const response = await API.get(`=${searchQuery}`);
 
     // Log the response for debugging purposes
     console.log(response.data);
