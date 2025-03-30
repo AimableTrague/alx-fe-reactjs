@@ -5,7 +5,7 @@ const Search = () => {
   const [user, setUser] = useState('');
   const [location, setLocation] = useState('');
   const [repos, setRepos] = useState('');
-  const [minRepos, setMinRepos] = useState('');  // Added minRepos state
+  const [minRepos, setMinRepos] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [results, setResults] = useState([]);
@@ -15,12 +15,11 @@ const Search = () => {
     setError(null);
     setLoading(true);
 
-    // Construct query based on user input, including minRepos if provided
     const query = {
       user: user.trim() || undefined,
       location: location.trim() || undefined,
       repos: repos.trim() || undefined,
-      minRepos: minRepos.trim() || undefined,  // Ensure minRepos is included
+      minRepos: minRepos.trim() || undefined,
     };
 
     try {
@@ -29,7 +28,7 @@ const Search = () => {
         setError("No users found");
         setResults([]);
       } else {
-        setResults(data.items);  // Update the results with the fetched data
+        setResults(data.items);
         setError(null);
       }
     } catch (err) {
@@ -72,7 +71,7 @@ const Search = () => {
           name="minRepos"
           className="border-2"
           value={minRepos}
-          onChange={(e) => setMinRepos(e.target.value)}  // Handle minRepos input
+          onChange={(e) => setMinRepos(e.target.value)}
         />
         <button type="submit" className="rounded border-2 bg-slate-400 p-1">
           Search
