@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://api.github.com/search/',
+  baseURL: 'https://api.github.com/search/users',
 });
 
 // Helper function to build the query string for the search
@@ -10,7 +10,7 @@ const buildQuery = (params) => {
 
   if (params.user) queryString.push(`${params.user}`);
   if (params.location) queryString.push(`location:${params.location}`);
-  if (params.repos) queryString.push(`repos:>${params.repos}`);  // Filter users with more than `repos` repos
+  if (params.repos) queryString.push(`repos:>${params.repos}`); // Only add repos filter if present
 
   return queryString.join('+');
 };
@@ -24,7 +24,7 @@ export const fetchUserData = async (query) => {
     console.log(`Searching with query: ${searchQuery}`);
 
     // Make the GET request to the GitHub API with the built query
-    const response = await API.get(`/users?q=${searchQuery}`);
+    const response = await API.get(`?q=${searchQuery}`);
 
     // Log the response for debugging purposes
     console.log(response.data);
