@@ -8,9 +8,14 @@ const API = axios.create({
 const buildQuery = (params) => {
   let queryString = [];
 
-  if (params.user) queryString.push(`${params.user}`);
+  // Add user if available
+  if (params.user) queryString.push(params.user);
+
+  // Add location if available
   if (params.location) queryString.push(`location:${params.location}`);
-  if (params.repos) queryString.push(`repos:>${params.repos}`); // Only add repos filter if present
+
+  // Add repos filter if available (e.g., repos:>10 means more than 10 repos)
+  if (params.repos) queryString.push(`repos:>${params.repos}`);
 
   return queryString.join('+');
 };
@@ -23,13 +28,13 @@ export const fetchUserData = async (query) => {
     // Log the query for debugging purposes
     console.log(`Searching with query: ${searchQuery}`);
 
-    // Make the GET request to the GitHub API with the built query
+    // Make the GET request to the GitHub API with the constructed query string
     const response = await API.get(`?q=${searchQuery}`);
 
     // Log the response for debugging purposes
     console.log(response.data);
 
-    // Return the response data
+    // Return the response data (list of users)
     return response.data;
   } catch (error) {
     // Log any errors encountered during the request
