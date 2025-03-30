@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { fetchUserData } from '../services/githubService';
 
-const Search = ({ setUserData }) => {
+const Search = () => {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [results, setResults] = useState()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,9 +24,9 @@ const Search = ({ setUserData }) => {
       
       if (!data) {
         setError('User not found.');
-        setUserData(null);
+        setResults(null);
       } else {
-        setUserData(data);
+        setResults(data);
         setError(null);
       }
     } catch (err) {
@@ -51,6 +52,16 @@ const Search = ({ setUserData }) => {
       </form>
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
+
+      {results && (
+        <div>
+          <h2>{results.name}</h2>
+          <p>Username: {results.login}</p>
+          <img src={results.avatar_url} alt="User Avatar" width="100" />
+          <p>Followers: {results.followers}</p>
+          <a href={results.html_url} target="_blank" rel="noopener noreferrer">View Profile</a>
+        </div>
+      )}
     </div>
   );
 };
