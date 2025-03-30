@@ -1,13 +1,25 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://api.github.com',
+  baseURL: 'https://api.github.com/search/',
 });
 
-// Function to fetch user data from GitHub API
-export const fetchUserData = async (username) => {
+
+const buildQuery = (params) => {
+  let queryString = [];
+
+  if (params.user) queryString.push(`${params.user}`);
+  if (params.location) queryString.push(`location:${params.location}`);
+  if (params.repos) queryString.push(`repos:>${params.repos}`);
+
+  return queryString.join('+');
+};
+
+export const fetchUserData = async (query) => {
   try {
-    const response = await API.get(`/users/${username}`);
+    const searchQuery = buildQuery(query);
+    const response = await API.get(`/users?q=${searchQuery}`);
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
