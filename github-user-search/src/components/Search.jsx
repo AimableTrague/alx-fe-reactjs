@@ -23,7 +23,7 @@ const Search = () => {
       const data = await fetchUserData(query);
       
       if (!data) {
-        setError('User not found.');
+        setError("Looks like we cant find the user");
         setResults(null);
       } else {
         setResults(data);
